@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Vancouver Library Search</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+</head>
+<body>
+    <main class="container">
+        <h1>Metro Vancouver Library Search</h1>
+        <form action="/search" method="get">
+    <label for="query">Book Title:</label>
+    <input type="text" id="query" name="query" required>
+    <fieldset>
+        <legend>Select libraries to search:</legend>
+        <div class="grid">
+            {% for key, name in libraries.items() %}
+            <div class="col-6">
+                <label>
+                    <input type="checkbox" name="libraries" value="{{ key }}" checked>
+                    {{ name }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+    </fieldset>
+    <button type="submit">Search</button>
+</form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results for "{{ query }}"</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+</head>
+<body>
+    <main class="container">
+        <h1>Search Results for "{{ query }}"</h1>
+        <a href="/">New Search</a>
+
+        {% for lib_key, lib_results in results.items() %}
+        <article>
+    <h2><a href="{{ search_urls[lib_key].format(query=query) }}" target="_blank">{{ libraries[lib_key] }}</a></h2>
+    {% if lib_results.error %}
+        <p class="error">Error: {{ lib_results.error }}</p>
+    {% elif lib_results.items %}
+    <div class="grid">
+    {% for item in lib_results['items'] %}
+    <div class="col-4">
+        <article>
+            <header>
+                <a href="{{ item.link }}" target="_blank">
+                    {% if item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
+                    {% endif %}
+                    <strong>{{ item.title }}</strong>
+                </a>
+            </header>
+            <p><strong>Author:</strong> {{ item.author }}</p>
+            <p><strong>Resource Type:</strong> {{ item.resource_type }}</p>
+            <footer>
+                <p><strong>Availability:</strong> {{ item.availability }}</p>
+            </footer>
+        </article>
+    </div>
+    {% endfor %}
+</div>
+    {% else %}
+    <p>No results found in this library.</p>
+    {% endif %}
+</article>
+        {% endfor %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+[project]
+name = "libsearch"
+version = "0.1.0"
+description = "A simple app to search for books in Metro Vancouver libraries."
+authors = [{ name = "Liudas", email = "liudas.cloud@gmail.com" }]
+requires-python = ">=3.11"
+dependencies = [
+    "flask",
+    "requests",
+    "beautifulsoup4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "just",
+]
+
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
