@@ -53,3 +53,27 @@ A simple web application to search for books in various libraries across Metro V
 *   **Task Runner:** just
 *   **Testing:** pytest, pytest-cov
 *   **Linting:** ruff
+
+---
+
+## Go Implementation
+
+This project also includes a Go implementation of the library search application. It provides the same features as the Python version.
+
+### Running the Go Version
+
+1.  **Navigate to the `go-libsearch` directory:**
+    ```bash
+    cd go-libsearch
+    ```
+2.  **Run the application:**
+    ```bash
+    go run .
+    ```
+    The application will be available at `http://127.0.0.1:5001`.
+
+### Go Libraries Used
+
+*   **Web Framework:** `net/http`
+*   **Web Scraping:** `github.com/gocolly/colly/v2`
+*   **HTML Templates:** `html/template`

@@ -1,13 +1,19 @@
 import logging
+
 from flask import Flask, render_template, request
-from .config import LIBRARIES, SEARCH_URLS, BASE_URLS
+
+from .config import BASE_URLS, LIBRARIES, SEARCH_URLS
 from .scraper import search_library
 
-app = Flask(__name__, template_folder='../templates')
+app = Flask(__name__, template_folder="../templates")
 
 # Configure logging
-logging.basicConfig(filename='app.log', level=logging.ERROR, 
-                    format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(
+    filename="app.log",
+    level=logging.ERROR,
+    format="%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s",
+)
+
 
 @app.route("/")
 def index():

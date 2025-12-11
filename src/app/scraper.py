@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 def search_library(query, library_key, search_urls, base_urls):
     search_url_template = search_urls.get(library_key)
     base_url = base_urls.get(library_key)
@@ -25,13 +26,19 @@ def search_library(query, library_key, search_urls, base_urls):
         full_link = f"{base_url}{relative_link}" if relative_link != "#" else "#"
 
         author_element = item.find("span", class_="cp-by-author-block")
-        author = author_element.text.replace("by", "").strip() if author_element else "N/A"
+        author = (
+            author_element.text.replace("by", "").strip() if author_element else "N/A"
+        )
 
         resource_type_element = item.find("span", class_="cp-format-indicator-name")
-        resource_type = resource_type_element.text.strip() if resource_type_element else "N/A"
+        resource_type = (
+            resource_type_element.text.strip() if resource_type_element else "N/A"
+        )
 
         availability_element = item.find("span", class_="cp-availability-status")
-        availability = availability_element.text.strip() if availability_element else "N/A"
+        availability = (
+            availability_element.text.strip() if availability_element else "N/A"
+        )
 
         thumbnail_element = item.find("img", class_="cp-thumbnail")
         if thumbnail_element:
@@ -47,13 +54,15 @@ def search_library(query, library_key, search_urls, base_urls):
             else:
                 thumbnail = None
 
-        items.append({
-            "title": title,
-            "author": author,
-            "resource_type": resource_type,
-            "availability": availability,
-            "link": full_link,
-            "thumbnail": thumbnail,
-        })
+        items.append(
+            {
+                "title": title,
+                "author": author,
+                "resource_type": resource_type,
+                "availability": availability,
+                "link": full_link,
+                "thumbnail": thumbnail,
+            }
+        )
 
     return {"items": items}
